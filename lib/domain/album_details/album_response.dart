@@ -8,13 +8,10 @@ part 'album_response.g.dart';
 class AlbumResponse {
   AlbumResponse({
     required this.artist,
-    required this.mbid,
-    required this.playcount,
     required this.image,
-    required this.url,
     required this.name,
     required this.listeners,
-    required this.wiki,
+    this.wiki,
   });
 
   factory AlbumResponse.fromJson(Map<String, dynamic> json) =>
@@ -23,11 +20,8 @@ class AlbumResponse {
   Map<String, dynamic> toJson() => _$AlbumResponseToJson(this);
 
   final String artist;
-  final String mbid;
-  final String playcount;
   final List<ImageData> image;
-  final String url;
   final String name;
   final String listeners;
-  final Wiki wiki;
+  final Wiki? wiki;
 }

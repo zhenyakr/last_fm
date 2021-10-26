@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:last_fm/application/artist_details/artist_details_future_provider.dart';
+import 'package:last_fm/presentation/helpers/error_page.dart';
 import 'package:last_fm/presentation/helpers/loader.dart';
 
 class ArtistDetails extends HookWidget {
@@ -54,18 +55,20 @@ class ArtistDetails extends HookWidget {
                     ),
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 10,
-                  ),
-                  child: Text(
-                    'Bio: ${data.artist.bio.summary}',
-                    style: TextStyle(
-                      fontSize: 16,
-                    ),
-                  ),
-                ),
+                (data.artist.bio != null)
+                    ? Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 10,
+                        ),
+                        child: Text(
+                          'Bio: ${data.artist.bio?.summary}',
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
+                        ),
+                      )
+                    : Text(''),
               ],
             ),
           ),
@@ -73,9 +76,7 @@ class ArtistDetails extends HookWidget {
       },
       loading: () => ExpandedLoader(),
       error: (e, o) {
-        return Text(
-          'Sorry, something went wrong',
-        );
+        return ErrorPage();
       },
     );
   }

@@ -3,6 +3,7 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:last_fm/application/album_details/album_details_future_provider.dart';
 import 'package:last_fm/domain/search/local/album_details_request.dart';
+import 'package:last_fm/presentation/helpers/error_page.dart';
 import 'package:last_fm/presentation/helpers/loader.dart';
 
 class AlbumDetails extends HookWidget {
@@ -82,12 +83,26 @@ class AlbumDetails extends HookWidget {
                     vertical: 10,
                   ),
                   child: Text(
-                    'Description: ${data.album.wiki.summary}',
+                    'Listeners: ${data.album.listeners}',
                     style: TextStyle(
                       fontSize: 16,
                     ),
                   ),
                 ),
+                data.album.wiki != null
+                    ? Padding(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 8,
+                          vertical: 10,
+                        ),
+                        child: Text(
+                          'Description: ${data.album.wiki?.summary}',
+                          style: TextStyle(
+                            fontSize: 16,
+                          ),
+                        ),
+                      )
+                    : Text('')
               ],
             ),
           ),
@@ -95,9 +110,7 @@ class AlbumDetails extends HookWidget {
       },
       loading: () => ExpandedLoader(),
       error: (e, o) {
-        return Text(
-          'Sorry, something went wrong',
-        );
+        return ErrorPage();
       },
     );
   }

@@ -7,7 +7,6 @@ part 'artist_response.g.dart';
 @JsonSerializable()
 class ArtistResponse {
   ArtistResponse({
-    required this.mbid,
     required this.image,
     required this.url,
     required this.name,
@@ -20,8 +19,7 @@ class ArtistResponse {
   Map<String, dynamic> toJson() => _$ArtistResponseToJson(this);
 
   final String name;
-  final String mbid;
   final String url;
   final List<ImageData> image;
-  final Wiki bio;
+  final Wiki? bio;
 }

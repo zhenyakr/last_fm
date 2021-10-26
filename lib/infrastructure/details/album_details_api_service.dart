@@ -21,6 +21,7 @@ class AlbumDetailsApiService {
     );
 
     AlbumForm albumForm;
+    print(response.data);
     albumForm = AlbumForm.fromJson(response.data);
     return albumForm;
   }

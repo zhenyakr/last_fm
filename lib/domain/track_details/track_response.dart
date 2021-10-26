@@ -7,12 +7,12 @@ part 'track_response.g.dart';
 @JsonSerializable()
 class TrackResponse {
   TrackResponse({
-    required this.mbid,
     required this.name,
     required this.url,
     required this.duration,
     required this.album,
     required this.wiki,
+    required this.listeners,
   });
 
   factory TrackResponse.fromJson(Map<String, dynamic> json) =>
@@ -21,9 +21,9 @@ class TrackResponse {
   Map<String, dynamic> toJson() => _$TrackResponseToJson(this);
 
   final String name;
-  final String mbid;
   final String url;
   final String duration;
-  final TrackAlbumDetails album;
-  final Wiki wiki;
+  final String listeners;
+  final TrackAlbumDetails? album;
+  final Wiki? wiki;
 }
